@@ -25,7 +25,7 @@ import pandas as pd
 
 if __name__ == "__main__":
 
-  data = ElasticCom(index='index', host="176.9.8.171",
+  data = ElasticCom(index='index-name', host="localhost",
 	port=9200, username="elastic",
 	password="changeme",
 	authentication=True,
