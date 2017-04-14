@@ -1,5 +1,4 @@
 from src.elastic_to_pandas import ElasticCom
-import pandas as pd
 
 if __name__ == "__main__":
 
