@@ -21,7 +21,6 @@ Use class `ElasticCom` and `search_and_export_to_df` method in the following exa
 
 ```
 from src.elastic_to_pandas import ElasticCom
-import pandas as pd
 
 if __name__ == "__main__":
 
