@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ##### Prerequisites
 
-For running the code you need an up-and-running Elasticsearch index with Python 3 installed on your OS.
+For running the code you need an up-and-running Elasticsearch index along with a Python 3 interpreter installed on your OS.
 
 To install the requirements please use the `requirements.txt`, 	On Debian/Ubuntu you could run the following in Terminal: 
 ```
