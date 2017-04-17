@@ -76,10 +76,8 @@ class ElasticCom(object):
         data_key = kwargs.pop('data_key', kwargs.get('fields')) or '_source'
         kwargs = dict({'index': self.index, 'doc_type': self.doc_type}, **kwargs)
         if kwargs.get('size', None) is None:
-            kwargs['size'] = 1
             kwargs["request_timeout"] = 120
             t = self.es.search(*args, **kwargs)
-            kwargs['size'] = t['hits']['total']
             kwargs["size"] = self.size
             kwargs["from_"] = self.from_
 
