@@ -1,6 +1,6 @@
 ### Elastic_to_Pandas
 
-A class for reading content of an ES index into a Pandas DataFrame (written  in  Python 3)
+A Python class for reading content of an ES index into a Pandas DataFrame
 
 #### Getting Started
 
@@ -8,19 +8,18 @@ These instructions will get you a copy of the project up and running on your loc
 
 ##### Prerequisites
 
-For running the code you need an up-and-running Elasticsearch index along with a Python 3 interpreter installed on your OS.
-
-To install the requirements please use the `requirements.txt`, 	On Debian/Ubuntu you could run the following in Terminal: 
+For running the code you need an up-and-running Elasticsearch index along with a Python interpreter installed on your OS.
+To install the requirements please use the `requirements.txt`, 	On Debian/Ubuntu you could run the following in terminal in order to installed the dependencies:
+```Bash
+sudo pip3 install -U -r requirements.txt # change pip3 to pip for Python2 installation
 ```
-sudo pip3 install -r requirements.txt
-```
 
-### API and usage
+### API and use-cases
 
 Use class `ElasticCom` and `search_and_export_to_df` method in the following example:
 
-```
-from src.elastic_to_pandas import ElasticCom
+```Python
+from elastic_to_pandas import ElasticCom
 
 if __name__ == "__main__":
 
@@ -34,6 +33,5 @@ if __name__ == "__main__":
 For more info use `help(ElasticCom)`
 
 ## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the `CHANGELOG.MD`.
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the `CHANGELOG.md`.
 

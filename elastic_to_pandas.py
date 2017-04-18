@@ -1,9 +1,7 @@
-"""
-A class for reading the contents of an Elasticsearch (ES) into a Pandas DataFrame.
-"""
+__doc__ = """A module containing the routines needed for reading the contents of an Elasticsearch (ES) into a Pandas DataFrame."""
+
 from elasticsearch import Elasticsearch
 import pandas as pd
-
 
 def get_search_hits(es_response, _id=True, data_key=None):
     response_hits = es_response['hits']['hits']
@@ -26,10 +24,11 @@ def get_search_hits(es_response, _id=True, data_key=None):
     else:
         return []
 
-
 class ElasticCom(object):
-    def __init__(self, index, doc_type, max_result_window=200000, host='localhost', port=9200, from_=0, size=10000, username="elastic", password="changeme", authentication=True,
-                 **kwargs):
+    
+    def __init__(self, index, doc_type, max_result_window=200000, host='localhost',
+                 port=9200, from_=0, size=10000, username="elastic", password="changeme",
+                 authentication=True, **kwargs):
         """
         a class for fetching the contenst of an ES index and storing them into a Pandas DataFrame
         :param index: name of the index in ES
@@ -42,6 +41,7 @@ class ElasticCom(object):
         :param size:index pagination offset
         :param kwargs: --
         """
+        
         self.index = index
         self.doc_type = doc_type
         self.from_ = from_
@@ -60,9 +60,7 @@ class ElasticCom(object):
 
         try:
             self.es.indices.put_settings(index=self.index,
-                                         body={"index": {
-                                             "max_result_window": self.max_result_window
-                                         }})
+                                         body={"index": {"max_result_window": self.max_result_window}})
         except Exception as exc:
             print("Hey: " + exc.__str__())
 
@@ -72,6 +70,7 @@ class ElasticCom(object):
         :param kwargs: --
         :return: index contents as a Python 3 dictionary
         """
+        
         _id = kwargs.pop('_id', True)
         data_key = kwargs.pop('data_key', kwargs.get('fields')) or '_source'
         kwargs = dict({'index': self.index, 'doc_type': self.doc_type}, **kwargs)
@@ -81,8 +80,7 @@ class ElasticCom(object):
             kwargs["size"] = self.size
             kwargs["from_"] = self.from_
 
-        return get_search_hits(self.es.search(*args,
-                                                   **kwargs), _id=_id, data_key=data_key)
+        return get_search_hits(self.es.search(*args, **kwargs), _id=_id, data_key=data_key)
 
     def search_and_export_to_df(self, *args, **kwargs):
         """
@@ -90,6 +88,18 @@ class ElasticCom(object):
         :param kwargs: --
         :return: index contents as a Pandas DataFrame
         """
+        
         return pd.DataFrame(self.search_and_export_to_dict(*args, **kwargs))
 
 
+if __name__ == "__main__":
+
+    offset = 0
+    size = 10
+    rounds = 1
+    
+    for i in range(rounds):
+         data = ElasticCom(index='index-name', host="localhost",
+                      port=9200, username="elastic", password="changeme",
+                      authentication=True, doc_type='doc', size=10,
+                           from_=0).search_and_export_to_df()

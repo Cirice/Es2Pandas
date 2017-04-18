@@ -1,7 +1,8 @@
-## [v0.0.1]
+## [v0.0.2]
 
 **Description:**
 
+- Refactored the code.
 - First commit.
 
 **Fixed bugs:**
@@ -19,4 +20,3 @@
 **Implemented enhancements:**
 
 - None
- 
